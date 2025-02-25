@@ -17,6 +17,10 @@ jobs:
           path: ./dist
       - uses: actions/deploy-pages@v4
 
+      - name: Output GitHub Pages URL
+        run: echo "Your site is live at https://$GITHUB_REPOSITORY_OWNER.github.io/$(basename $GITHUB_REPOSITORY)"
+
+
     permissions:
       id-token: write
       pages: write
