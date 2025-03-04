@@ -1,5 +1,5 @@
-import React, {MouseEvent, useEffect, useRef, useState} from "react";
-import {Feature, Map, MapBrowserEvent, View} from "ol";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import { Feature, Map, MapBrowserEvent, View } from "ol";
 import TileLayer from "ol/layer/Tile";
 import { OSM } from "ol/source";
 import { useGeographic } from "ol/proj";
@@ -10,10 +10,7 @@ import "ol/ol.css";
 import { Fill, Stroke, Style } from "ol/style";
 import CircleStyle from "ol/style/Circle";
 
-
-
 useGeographic();
-
 
 export function Application() {
   const mapRef = useRef<HTMLDivElement | null>(null);
@@ -29,18 +26,20 @@ export function Application() {
   const tilfluktsromLayer = useRef<VectorLayer | null>(null);
 
   // hover-effekt når musen beveger seg over punktene
-  function handlePointermove(e:MapBrowserEvent<MouseEvent>) {
-    console.log(e.pixel)
-    const features=map.current.getFeaturesAtPixel(e.pixel) as Feature[]
-    console.log(features)
+  function handlePointermove(e: MapBrowserEvent<MouseEvent>) {
+    console.log(e.pixel);
+    const features = map.current.getFeaturesAtPixel(e.pixel) as Feature[];
+    console.log(features);
     for (const feature of features) {
-      feature.setStyle(new Style({
-        image: new CircleStyle({
-          radius: 8,
-          fill: new Fill({ color: "blue" }),
-          stroke: new Stroke({ color: "white", width: 2 }),
+      feature.setStyle(
+        new Style({
+          image: new CircleStyle({
+            radius: 8,
+            fill: new Fill({ color: "blue" }),
+            stroke: new Stroke({ color: "white", width: 2 }),
+          }),
         }),
-      }))
+      );
     }
   }
 
@@ -50,7 +49,7 @@ export function Application() {
         view: new View({ center: [10.8, 59.9], zoom: 13 }),
         layers: [baseLayer.current],
       });
-      map.current.on("pointermove", handlePointermove)
+      map.current.on("pointermove", handlePointermove);
 
       map.current.setTarget(mapRef.current!);
     }
