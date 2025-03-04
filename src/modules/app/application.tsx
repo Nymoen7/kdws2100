@@ -28,6 +28,7 @@ export function Application() {
 
   const tilfluktsromLayer = useRef<VectorLayer | null>(null);
 
+  // hover-effekt når musen beveger seg over punktene
   function handlePointermove(e:MapBrowserEvent<MouseEvent>) {
     console.log(e.pixel)
     const features=map.current.getFeaturesAtPixel(e.pixel) as Feature[]
@@ -55,6 +56,7 @@ export function Application() {
     }
   }, []);
 
+  // aktivering og deaktivering av siv forsvarsdistrikter
   useEffect(() => {
     if (!map.current) return;
 
@@ -79,6 +81,7 @@ export function Application() {
     }
   }, [sivForsvarsChecked]);
 
+  // aktivering og deaktivering for tilfluktsrom
   useEffect(() => {
     if (!map.current) return;
 
